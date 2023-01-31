@@ -1,0 +1,271 @@
+package news;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import bsh.ParseException;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
+
+public class Functions {
+	static WebDriverWait waitSmall;
+
+	WebDriver driver;
+
+	public Functions(AndroidDriver driver) {
+		this.driver = driver;
+
+	}
+
+	
+	public void FillNameAndEmail() throws InterruptedException {
+		WebElement firstName = driver.findElement(MobileBy.xpath("	\r\n"
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[1]"));
+		firstName.click();
+		
+		System.out.println(firstName.toString());
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		Actions act = new Actions(driver);
+		
+		act.sendKeys("HOA").sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(5000);
+		
+		WebElement lastName = driver.findElement(MobileBy.xpath("	\r\n"
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[2]"));
+		lastName.click();
+		System.out.println(lastName.toString());
+		
+		act.sendKeys("VY").sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(5000);
+		
+		WebElement email = driver.findElement(MobileBy.xpath("	\r\n"
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[3]"));
+		email.click();
+		System.out.println(email.toString());
+		
+		act.sendKeys("KATYHOA719@GMAIL.COM").sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(5000);
+	
+
+	}
+	public void FillPassWord() {
+		WebElement passWord = driver.findElement(MobileBy.xpath("	\r\n" + 
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[4]"));
+		passWord.click();
+		System.out.println(passWord.toString());
+		Actions act = new Actions(driver);
+		act.sendKeys("123456789x@X").sendKeys(Keys.ENTER).build().perform();
+		
+	}
+	public void FillPhoneAndPassWord() {
+		
+		WebElement phone = driver.findElement(MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[4]"));
+		phone.click();
+		System.out.println(phone.toString());
+		Actions act = new Actions(driver);
+		act.sendKeys("03499999999").sendKeys(Keys.ENTER).build().perform();
+		
+//		WebElement passWord = driver.findElement(MobileBy.xpath("	\r\n"
+//				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[5]"));
+//		passWord.click();
+//		System.out.println(passWord.toString());
+//		act.sendKeys("123456789x@X").sendKeys(Keys.ENTER).build().perform();
+		
+	}
+
+	public void AddOmenaHotelMobile(String path) {
+
+		WebElement elt = driver.findElement(MobileBy.xpath(path));
+		elt.click();
+		System.out.println(elt.toString());
+
+	}
+
+	public void Voucher() throws InterruptedException {
+		String campaign = "//android.view.View[@content-desc=\"I have a campaign code\"]";
+		WebElement elt = driver.findElement(MobileBy.xpath(campaign));
+		elt.click();
+		String vcpath = "	\r\n"
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText";
+		Thread.sleep(5000);
+		WebElement eltm = driver.findElement(MobileBy.xpath(vcpath));
+		eltm.click();
+		System.out.println(eltm.toString());
+		Actions action = new Actions(driver);
+		action.sendKeys("JOONAS2019").sendKeys(Keys.ENTER).build().perform();
+
+		WebElement redeem = driver.findElement(MobileBy.xpath("//android.widget.Button[@content-desc=\"Redeem\"]"));
+		redeem.click();
+		System.out.println(redeem.toString());
+
+	}
+
+	public void sc() throws MalformedURLException {
+		System.out.println("klklm");
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),
+				capabilities);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElementByXPath("//android.view.View[@content-desc=\"Late departure 12:00 ( € 0)\"]").click();
+		driver.findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Early arrival 16:00 ( € 0)\").instance(0))")
+				.click();
+	}
+
+	void CkickDateTime() {
+		String DatePath = "//android.widget.Button[@content-desc=\"Fri, Dec 11 - Sat, Dec 12\"]";
+		WebElement Date = driver.findElement(MobileBy.xpath(DatePath));
+		Date.click();
+		System.out.println(Date.toString());
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		String arrival = "//android.view.View[@content-desc=\"15, Tuesday, December 15, 2020 15, Tuesday, December 15, 2020\"]";
+		WebElement departure = driver.findElement(MobileBy.xpath(DatePath));
+		departure.click();
+		System.out.println(departure.toString());
+
+	}
+
+	public void AddHotelHKI2() {
+		String HelsinkiLönnrotinkatu = "	//android.view.View[@content-desc='Helsinki, Lönnrotinkatu']";
+		WebElement HKI2 = driver.findElement(MobileBy.xpath(HelsinkiLönnrotinkatu));
+		HKI2.click();
+		System.out.println(HKI2.toString());
+
+	}
+
+	public void AddHotelHKI3() {
+		String HelsinkiYrjönkatu = "	//android.view.View[@content-desc='Helsinki, Yrjönkatu']";
+		WebElement HKI3 = driver.findElement(MobileBy.xpath(HelsinkiYrjönkatu));
+		HKI3.click();
+		System.out.println(HKI3.toString());
+	}
+
+	public void AddHotelJYL1() {
+		String Jyväskylä = "	//android.view.View[@content-desc='Jyväskylä']";
+		WebElement JYL1 = driver.findElement(MobileBy.xpath(Jyväskylä));
+		JYL1.click();
+		System.out.println(JYL1.toString());
+
+	}
+
+	public void AddHotelTRE2() {
+		String Tampere = "	//android.view.View[@content-desc='Tampere']";
+		WebElement TRE2 = driver.findElement(MobileBy.xpath(Tampere));
+		TRE2.click();
+		System.out.println(TRE2.toString());
+
+	}
+
+	public void AddHotelTKU1() {
+		String Turku = "	//android.view.View[@content-desc=Turku']";
+		WebElement TKU1 = driver.findElement(MobileBy.xpath(Turku));
+		TKU1.click();
+		System.out.println(TKU1.toString());
+	}
+
+	// METHOD CHOOSE GUEST
+	public void ClickSelectRoomAndGuest() {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		String SelectRoomAndGuest = "//android.widget.Button[@content-desc='1 Room, 1 Adult, No Child']";
+		WebElement RoomAndGuest = driver.findElement(MobileBy.xpath(SelectRoomAndGuest));
+		RoomAndGuest.click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println(RoomAndGuest.toString());
+	}
+
+	public void ChooseNumberOfRoom(int numberRoom) {
+		String RoomPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button[2]";
+		WebElement Room = driver.findElement(MobileBy.xpath(RoomPath));
+
+		if (numberRoom <= 7) {
+			for (int i = 1; i < numberRoom; i++) {
+				Room.click();
+			}
+			System.out.println(Room.toString());
+		} else {
+			System.out.println(" Just only choose maximum 7 Room in Hotel");
+		}
+	}
+
+	public void ChooseNumberAdult(int room, int numberAdult) {
+		String AdultPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button[4]";
+		WebElement Adult = driver.findElement(MobileBy.xpath(AdultPath));
+		for (int i = room; i < numberAdult; i++) {
+			Adult.click();
+		}
+		System.out.println(Adult.toString());
+	}
+
+	public void ChooseNumberChild(int numberChildren) {
+		String ChildPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button[6]";
+		WebElement Child = driver.findElement(MobileBy.xpath(ChildPath));
+		for (int i = 1; i <= numberChildren; i++) {
+			Child.click();
+		}
+		System.out.println(Child.toString());
+	}
+
+	public void Apply() {
+		String ApplyPath = " //android.widget.Button[@content-desc=\"Apply\"]";
+		WebElement Apply = driver.findElement(MobileBy.xpath(ApplyPath));
+		Apply.click();
+		System.out.println(Apply.toString());
+	}
+
+	public void Continue() {
+		String ContinuePath = "//android.widget.Button[@content-desc='Continue']";
+
+		WebElement Continue = driver.findElement(MobileBy.xpath(ContinuePath));
+		Continue.click();
+		System.out.println(Continue.toString());
+	}
+
+	public void ClickChooseEarlyArrival() {
+		String EarlyArrivalPath = "//android.view.View[@content-desc=\"Early arrival 16:00 ( € 0)\"]";
+		WebElement EarlyArrival = driver.findElement(MobileBy.xpath(EarlyArrivalPath));
+		EarlyArrival.click();
+		System.out.println(EarlyArrival.toString());
+	}
+
+	public void ChooseEarlyArrival(String time, int money) {
+		String ArrivalPath = "//android.widget.RadioButton[@content-desc=\"Arrive at " + time + "€" + money + "]";
+		System.out.println(ArrivalPath);
+		// "//android.widget.RadioButton[@content-desc="Arrive at 16:00 € 0"]"
+//		WebElement Arrival = driver.findElement(MobileBy.xpath(ArrivalPath));
+//		Arrival.click();
+	}
+	public void AcceptBooking() {
+		WebElement Accept = driver.findElement(MobileBy.className("android.widget.CheckBox"));
+		Accept.click();
+		System.out.println(Accept.toString());
+		
+	}
+	public void SignUpAndPay() {
+		WebElement SignUpAndPay = driver.findElement(MobileBy.xpath("//android.widget.Button[@content-desc=\"Sign up & Pay\"]"));
+		SignUpAndPay.click();
+		System.out.println(SignUpAndPay.toString());
+	}
+	public void PaymentMemberRate() {
+		WebElement Pay = driver.findElement(MobileBy.xpath("	\r\n" + 
+				"//android.view.View[@content-desc=\"Web bank payment\"]"));
+		Pay.click();
+		System.out.println(Pay.toString());
+		WebElement OPbank = driver.findElement(MobileBy.xpath("//android.widget.RadioButton[@content-desc=\"OP Bank\"]"));
+		OPbank.click();
+		
+	}
+}
