@@ -66,6 +66,9 @@ public class Functions {
 		WebElement passWord = driver.findElement(MobileBy.xpath("	\r\n" + 
 				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.EditText[4]"));
 		passWord.click();
+		Xingdnfg
+		fnsnfmds
+		sdfs,mdn
 		System.out.println(passWord.toString());
 		Actions act = new Actions(driver);
 		act.sendKeys("123456789x@X").sendKeys(Keys.ENTER).build().perform();
